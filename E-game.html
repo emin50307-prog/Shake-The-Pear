@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shakespeare Quiz Game</title>
+    <style>
+        @font-face {
+            font-family: Terbuchet;
+            src: url(LCALLIG.TTF);
+        }
+
+        .flex{
+            text-decoration: none;
+            list-style-type: none;
+            background-color: #e8d2bc;
+            display:flex;
+            justify-content: left;
+            margin: 10px;
+            padding: 10px;
+            color: ivory;
+        }
+
+        li{
+            margin: 20px;
+        }
+
+        a{
+            text-decoration: none;
+            color: #2e2a25;
+            opacity: 80%;
+        }
+
+        a:hover{
+            opacity: 100%;
+        }
+
+        a:active{
+            opacity: 100%;
+        }
+        .add{
+            width: 200px;
+        }
+
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f5dc; /* Parchment-like background */
+            color: #333;
+            text-align: center;
+            padding: 20px;
+             font-family: Terbuchet;
+            background-color: ivory;
+            background-image: url('https://img.freepik.com/premium-photo/old-vintage-paper-texture-background_105034-1092.jpg?semt=ais_hybrid&w=740&q=80');
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #8b4513;
+        }
+        .question {
+            font-size: 1.2em;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1em;
+            background-color: #8b4513;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #a0522d;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 24px;
+        }
+        .score {
+            margin-top: 15px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <ul class="flex">
+            <li>
+                <a href="index.html">Homepage</a>
+            </li>
+            <li>
+                <a href="#">E-Game</a>
+            </li>
+            <li>
+                <a href="Shoebox.html">Globe Theatre</a>
+            </li>
+            <li>
+                <a href="Top_Trumps.html">Top Trumps</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Shakespeare Knowledge Quiz</h1>
+        <div class="question" id="current-question">
+            Click "Start Game" to begin!
+        </div>
+        
+        <div class="buttons">
+            <button onclick="selectAnswer('A')">A</button>
+            <button onclick="selectAnswer('B')">B</button>
+            <button onclick="selectAnswer('C')">C</button>
+            <button onclick="selectAnswer('D')">D</button>
+            <button onclick="selectAnswer('E')">E</button>
+        </div>
+        
+        <div class="result" id="result"></div>
+        <div class="score" id="score">Score: 0/12</div>
+        <button onclick="startGame()" id="start-btn">Start Game</button>
+    </div>
+
+    <script>
+        // Вопросы и правильные ответы (A-E)
+        const questions = [
+            {
+                question: "In which town was Shakespeare born?",
+                options: ["London", "Stratford-upon-Avon", "Oxford", "Cambridge", "York"],
+                correct: "B"
+            },
+            {
+                question: "What was the name of Shakespeare's wife?",
+                options: ["Elizabeth I", "Anne Hathaway", "Mary Queen of Scots", "Juliet", "Ophelia"],
+                correct: "B"
+            },
+            {
+                question: "Which of these is NOT a Shakespeare play?",
+                options: ["Hamlet", "Macbeth", "Romeo and Juliet", "Dracula", "Othello"],
+                correct: "D"
+            },
+            {
+                question: "How many sonnets did Shakespeare write?",
+                options: ["50", "100", "154", "200", "37"],
+                correct: "C"
+            },
+            {
+                question: "What was the name of Shakespeare's theatre?",
+                options: ["The Globe", "The Rose", "The Swan", "The Theatre", "The Hope"],
+                correct: "A"
+            },
+            {
+                question: "'To be or not to be' is a famous line from which play?",
+                options: ["Macbeth", "King Lear", "Hamlet", "Othello", "Julius Caesar"],
+                correct: "C"
+            },
+            {
+                question: "Which play features the character Juliet?",
+                options: ["A Midsummer Night's Dream", "Twelfth Night", "Romeo and Juliet", "Much Ado About Nothing", "The Tempest"],
+                correct: "C"
+            },
+            {
+                question: "When did Shakespeare die?",
+                options: ["1564", "1616", "1623", "1600", "1642"],
+                correct: "B"
+            },
+            {
+                question: "What type of poetry did Shakespeare often use?",
+                options: ["Haiku", "Sonnet", "Limerick", "Epic", "Free verse"],
+                correct: "B"
+            },
+            {
+                question: "Who was the monarch during most of Shakespeare's career?",
+                options: ["Henry VIII", "James I", "Elizabeth I", "Charles I", "Mary I"],
+                correct: "C"
+            },
+            {
+                question: "Which play begins with three witches?",
+                options: ["Hamlet", "Macbeth", "King Lear", "Antony and Cleopatra", "The Merchant of Venice"],
+                correct: "B"
+            },
+            {
+                question: "What did Shakespeare leave his wife in his will?",
+                options: ["All his money", "His theatre", "His books", "His second best bed", "Nothing"],
+                correct: "D"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startGame() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('start-btn').style.display = 'none';
+            document.getElementById('score').textContent = 'Score: 0/12';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('current-question').textContent = q.question;
+            
+            // Показываем варианты ответов в подсказке (можно убрать)
+            const optionsText = q.options.map((opt, i) => `${String.fromCharCode(65 + i)}: ${opt}`).join(' | ');
+            document.getElementById('result').textContent = `Options: ${optionsText}`;
+        }
+
+        function selectAnswer(answer) {
+            if (currentQuestion >= questions.length) return;
+            
+            const correct = questions[currentQuestion].correct;
+            const resultDiv = document.getElementById('result');
+            
+            if (answer === correct) {
+                resultDiv.textContent = "Correct! Well done!";
+                resultDiv.style.color = "green";
+                score++;
+            } else {
+                resultDiv.textContent = `Wrong! The correct answer was ${correct}.`;
+                resultDiv.style.color = "red";
+            }
+            
+            document.getElementById('score').textContent = `Score: ${score}/${questions.length}`;
+            
+            currentQuestion++;
+            
+            if (currentQuestion < questions.length) {
+                setTimeout(showQuestion, 2000); // Ждём 2 секунды перед следующим вопросом
+            } else {
+                setTimeout(() => {
+                    resultDiv.textContent = `Game over! Final score: ${score}/${questions.length}. Thanks for playing!`;
+                    document.getElementById('start-btn').style.display = 'block';
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

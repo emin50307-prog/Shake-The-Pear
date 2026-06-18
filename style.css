@@ -1,0 +1,42 @@
+@font-face {
+    font-family: Terbuchet;
+    src: url(LCALLIG.TTF);
+}
+
+body{
+    font-family: Terbuchet;
+    background-color: ivory;
+    background-image: url('https://img.freepik.com/premium-photo/old-vintage-paper-texture-background_105034-1092.jpg?semt=ais_hybrid&w=740&q=80');
+}
+
+.flex{
+    text-decoration: none;
+    list-style-type: none;
+    background-color: #e8d2bc;
+    display:flex;
+    justify-content: left;
+    margin: 10px;
+    padding: 10px;
+    color: ivory;
+}
+
+li{
+    margin: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: #2e2a25;
+    opacity: 80%;
+}
+
+a:hover{
+    opacity: 100%;
+}
+
+a:active{
+    opacity: 100%;
+}
+.add{
+    width: 200px;
+}

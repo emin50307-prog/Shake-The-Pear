@@ -1,0 +1,144 @@
+@font-face {
+    font-family: Terbuchet;
+    src: url(LCALLIG.TTF);
+}
+
+body{
+    font-family: Terbuchet;
+    background-color: ivory;
+    background-image: url('https://img.freepik.com/premium-photo/old-vintage-paper-texture-background_105034-1092.jpg?semt=ais_hybrid&w=740&q=80');
+}
+
+button{
+    font-family: Terbuchet;
+}
+
+@keyframes a1 {
+    0%{
+        color: cyan;
+        transform: scale(1);
+    }
+    20%{
+        color: magenta ;
+        transform: scale(1.5);
+    }
+    40%{
+        color: yellow;
+        transform: scale(1);
+    }
+    60%{
+        color: black;
+        transform: skew(20deg,20deg);
+    }
+    80%{
+        color: whitesmoke;
+        transform: rotate(45deg);
+    }
+    100%{
+        color: gray;
+        transform: translate(30px,30px);
+    }
+}
+
+.block button{
+    margin: 100px;
+    height: 100px;
+    width: 100px;
+    animation-name: a1;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+}
+
+
+
+.flex{
+    text-decoration: none;
+    list-style-type: none;
+    background-color: #e8d2bc;
+    display:flex;
+    justify-content: left;
+    margin: 10px;
+    padding: 10px;
+    color: ivory;
+}
+
+
+li{
+    margin: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: #2e2a25;
+    opacity: 50%;
+}
+
+
+.flex-q{
+    display:inline;
+    justify-content: space-evenly;
+}
+a:hover{
+    opacity: 100%;
+}
+
+a:active{
+    opacity: 100%;
+}
+
+.shakespeare-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #d4b158; /* Base button theme */
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px 10px 10px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.shakespeare-btn:hover {
+  background-color: #f72265;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.shakespeare-btn:active {
+  transform: translateY(0);
+}
+
+/* SVG Graphic Styling */
+.shakespeare-face {
+  width: 40px;
+  height: 40px;
+}
+
+.shakespeare-face .ruff {
+  fill: #fdf6e3; /* Cream collar */
+  stroke: #d6cbaf;
+  stroke-width: 1;
+}
+
+.shakespeare-face .head {
+  fill: #e6d1b8; /* Skin tone */
+  stroke: #2c3e50;
+  stroke-width: 1.5;
+}
+
+.shakespeare-face .eye {
+  fill: #2c3e50;
+}
+
+.shakespeare-face .nose {
+  fill: none;
+  stroke: #2c3e50;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
